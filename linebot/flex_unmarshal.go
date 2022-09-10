@@ -17,6 +17,7 @@ package linebot
 import (
 	"errors"
 	"github.com/goccy/go-json"
+	"log"
 )
 
 // UnmarshalFlexMessageJSON function
@@ -37,6 +38,7 @@ func (c *rawFlexContainer) UnmarshalJSON(data []byte) error {
 	type alias rawFlexContainer
 	raw := alias{}
 	if err := json.Unmarshal(data, &raw); err != nil {
+		log.Printf("rawFlexContainer UnmarshalJSON error: %v\n", err)
 		return err
 	}
 	var container FlexContainer
@@ -65,6 +67,7 @@ func (c *rawFlexComponent) UnmarshalJSON(data []byte) error {
 	type alias rawFlexComponent
 	raw := alias{}
 	if err := json.Unmarshal(data, &raw); err != nil {
+		log.Printf("rawFlexComponent UnmarshalJSON error: %v\n", err)
 		return err
 	}
 	var component FlexComponent
@@ -107,6 +110,7 @@ func (c *rawAction) UnmarshalJSON(data []byte) error {
 	type alias rawAction
 	raw := alias{}
 	if err := json.Unmarshal(data, &raw); err != nil {
+		log.Printf("rawAction UnmarshalJSON error: %v\n", err)
 		return err
 	}
 	var action TemplateAction
@@ -141,6 +145,7 @@ func (c *BoxComponent) UnmarshalJSON(data []byte) error {
 		alias: (*alias)(c),
 	}
 	if err := json.Unmarshal(data, &raw); err != nil {
+		log.Printf("BoxComponent UnmarshalJSON error: %v\n", err)
 		return err
 	}
 	components := make([]FlexComponent, len(raw.Contents))
@@ -162,6 +167,7 @@ func (c *ButtonComponent) UnmarshalJSON(data []byte) error {
 		alias: (*alias)(c),
 	}
 	if err := json.Unmarshal(data, &raw); err != nil {
+		log.Printf("ButtonComponent UnmarshalJSON error: %v\n", err)
 		return err
 	}
 	c.Action = raw.Action.Action
@@ -178,6 +184,7 @@ func (c *ImageComponent) UnmarshalJSON(data []byte) error {
 		alias: (*alias)(c),
 	}
 	if err := json.Unmarshal(data, &raw); err != nil {
+		log.Printf("ImageComponent UnmarshalJSON error: %v\n", err)
 		return err
 	}
 	c.Action = raw.Action.Action
@@ -194,6 +201,7 @@ func (c *TextComponent) UnmarshalJSON(data []byte) error {
 		alias: (*alias)(c),
 	}
 	if err := json.Unmarshal(data, &raw); err != nil {
+		log.Printf("TextComponent UnmarshalJSON error: %v", err)
 		return err
 	}
 	c.Action = raw.Action.Action
