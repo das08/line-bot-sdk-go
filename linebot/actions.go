@@ -14,7 +14,7 @@
 
 package linebot
 
-import "encoding/json"
+import "github.com/goccy/go-json"
 
 // ActionType type
 type ActionType string
@@ -117,7 +117,7 @@ type PostbackAction struct {
 // MarshalJSON method of PostbackAction
 func (a *PostbackAction) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
-		Type        ActionType `json:"type"`
+		Type        ActionType  `json:"type"`
 		Label       string      `json:"label,omitempty"`
 		Data        string      `json:"data"`
 		Text        string      `json:"text,omitempty"`

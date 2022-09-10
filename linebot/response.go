@@ -16,7 +16,7 @@ package linebot
 
 import (
 	"bytes"
-	"encoding/json"
+	"github.com/goccy/go-json"
 	"io"
 	"io/ioutil"
 	"net/http"

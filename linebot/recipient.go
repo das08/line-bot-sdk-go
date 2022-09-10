@@ -14,7 +14,7 @@
 
 package linebot
 
-import "encoding/json"
+import "github.com/goccy/go-json"
 
 // Recipient interface
 type Recipient interface {

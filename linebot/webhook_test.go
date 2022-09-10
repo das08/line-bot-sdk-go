@@ -21,7 +21,7 @@ import (
 	"crypto/sha256"
 	"crypto/tls"
 	"encoding/base64"
-	"encoding/json"
+	"github.com/goccy/go-json"
 	"io/ioutil"
 	"net/http"
 	"net/http/httptest"

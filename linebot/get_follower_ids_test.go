@@ -16,8 +16,8 @@ package linebot
 
 import (
 	"context"
-	"encoding/json"
 	"fmt"
+	"github.com/goccy/go-json"
 	"io/ioutil"
 	"net/http"
 	"net/http/httptest"

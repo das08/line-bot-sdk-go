@@ -14,7 +14,7 @@
 
 package linebot
 
-import "encoding/json"
+import "github.com/goccy/go-json"
 
 // FlexContainerType type
 type FlexContainerType string

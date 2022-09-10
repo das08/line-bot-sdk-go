@@ -15,8 +15,8 @@
 package linebot
 
 import (
-	"encoding/json"
 	"errors"
+	"github.com/goccy/go-json"
 )
 
 // UnmarshalFlexMessageJSON function
