@@ -34,15 +34,19 @@ type rawFlexContainer struct {
 	Container FlexContainer     `json:"-"`
 }
 
+type RfcAlias struct {
+	Alias rawFlexContainer
+}
+
 func (c *rawFlexContainer) UnmarshalJSON(data []byte) error {
-	type alias rawFlexContainer
-	raw := alias{}
-	if err := json.Unmarshal(data, &raw); err != nil {
+	//type alias rawFlexContainer
+	raw := RfcAlias{}
+	if err := json.Unmarshal(data, &raw.Alias); err != nil {
 		log.Printf("rawFlexContainer UnmarshalJSON error: %v\n", err)
 		return err
 	}
 	var container FlexContainer
-	switch raw.Type {
+	switch raw.Alias.Type {
 	case FlexContainerTypeBubble:
 		container = &BubbleContainer{}
 	case FlexContainerTypeCarousel:
@@ -53,7 +57,7 @@ func (c *rawFlexContainer) UnmarshalJSON(data []byte) error {
 	if err := json.Unmarshal(data, container); err != nil {
 		return err
 	}
-	c.Type = raw.Type
+	c.Type = raw.Alias.Type
 	c.Container = container
 	return nil
 }
@@ -63,15 +67,19 @@ type rawFlexComponent struct {
 	Component FlexComponent     `json:"-"`
 }
 
+type RfcAlias2 struct {
+	Alias rawFlexComponent
+}
+
 func (c *rawFlexComponent) UnmarshalJSON(data []byte) error {
-	type alias rawFlexComponent
-	raw := alias{}
-	if err := json.Unmarshal(data, &raw); err != nil {
+	//type alias rawFlexComponent
+	raw := RfcAlias2{}
+	if err := json.Unmarshal(data, &raw.Alias); err != nil {
 		log.Printf("rawFlexComponent UnmarshalJSON error: %v\n", err)
 		return err
 	}
 	var component FlexComponent
-	switch raw.Type {
+	switch raw.Alias.Type {
 	case FlexComponentTypeBox:
 		component = &BoxComponent{}
 	case FlexComponentTypeButton:
@@ -96,7 +104,7 @@ func (c *rawFlexComponent) UnmarshalJSON(data []byte) error {
 	if err := json.Unmarshal(data, component); err != nil {
 		return err
 	}
-	c.Type = raw.Type
+	c.Type = raw.Alias.Type
 	c.Component = component
 	return nil
 }
