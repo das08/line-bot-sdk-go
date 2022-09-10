@@ -34,8 +34,7 @@ type rawFlexContainer struct {
 }
 
 func (c *rawFlexContainer) UnmarshalJSON(data []byte) error {
-	type alias rawFlexContainer
-	raw := alias{}
+	raw := rawFlexContainer{}
 	if err := json.Unmarshal(data, &raw); err != nil {
 		return err
 	}
@@ -62,8 +61,7 @@ type rawFlexComponent struct {
 }
 
 func (c *rawFlexComponent) UnmarshalJSON(data []byte) error {
-	type alias rawFlexComponent
-	raw := alias{}
+	raw := rawFlexComponent{}
 	if err := json.Unmarshal(data, &raw); err != nil {
 		return err
 	}
@@ -104,8 +102,7 @@ type rawAction struct {
 }
 
 func (c *rawAction) UnmarshalJSON(data []byte) error {
-	type alias rawAction
-	raw := alias{}
+	raw := rawAction{}
 	if err := json.Unmarshal(data, &raw); err != nil {
 		return err
 	}
@@ -132,13 +129,12 @@ func (c *rawAction) UnmarshalJSON(data []byte) error {
 
 // UnmarshalJSON method for BoxComponent
 func (c *BoxComponent) UnmarshalJSON(data []byte) error {
-	type alias BoxComponent
 	raw := struct {
 		Contents []rawFlexComponent `json:"contents"`
 		Action   rawAction          `json:"action"`
-		*alias
+		*BoxComponent
 	}{
-		alias: (*alias)(c),
+		BoxComponent: (*BoxComponent)(c),
 	}
 	if err := json.Unmarshal(data, &raw); err != nil {
 		return err
@@ -154,12 +150,11 @@ func (c *BoxComponent) UnmarshalJSON(data []byte) error {
 
 // UnmarshalJSON method for ButtonComponent
 func (c *ButtonComponent) UnmarshalJSON(data []byte) error {
-	type alias ButtonComponent
 	raw := struct {
 		Action rawAction `json:"action"`
-		*alias
+		*ButtonComponent
 	}{
-		alias: (*alias)(c),
+		ButtonComponent: (*ButtonComponent)(c),
 	}
 	if err := json.Unmarshal(data, &raw); err != nil {
 		return err
@@ -170,12 +165,11 @@ func (c *ButtonComponent) UnmarshalJSON(data []byte) error {
 
 // UnmarshalJSON method for ImageComponent
 func (c *ImageComponent) UnmarshalJSON(data []byte) error {
-	type alias ImageComponent
 	raw := struct {
 		Action rawAction `json:"action"`
-		*alias
+		*ImageComponent
 	}{
-		alias: (*alias)(c),
+		ImageComponent: (*ImageComponent)(c),
 	}
 	if err := json.Unmarshal(data, &raw); err != nil {
 		return err
@@ -186,12 +180,11 @@ func (c *ImageComponent) UnmarshalJSON(data []byte) error {
 
 // UnmarshalJSON method for TextComponent
 func (c *TextComponent) UnmarshalJSON(data []byte) error {
-	type alias TextComponent
 	raw := struct {
 		Action rawAction `json:"action"`
-		*alias
+		*TextComponent
 	}{
-		alias: (*alias)(c),
+		TextComponent: (*TextComponent)(c),
 	}
 	if err := json.Unmarshal(data, &raw); err != nil {
 		return err
@@ -202,12 +195,11 @@ func (c *TextComponent) UnmarshalJSON(data []byte) error {
 
 // UnmarshalJSON method for VideoComponent
 func (c *VideoComponent) UnmarshalJSON(data []byte) error {
-	type alias VideoComponent
 	raw := struct {
 		AltContent rawFlexComponent `json:"altContent"`
-		*alias
+		*VideoComponent
 	}{
-		alias: (*alias)(c),
+		VideoComponent: (*VideoComponent)(c),
 	}
 	if err := json.Unmarshal(data, &raw); err != nil {
 		return err
