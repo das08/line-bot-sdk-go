@@ -24,7 +24,7 @@ import (
 	"os/exec"
 	"path/filepath"
 
-	"github.com/line/line-bot-sdk-go/v7/linebot"
+	"github.com/das08/line-bot-sdk-go/v7/linebot"
 )
 
 func main() {
